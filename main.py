@@ -55,37 +55,51 @@ class binomation:
           print(ptr_2, end=" ")
       print()
     
-  def exportDF(self):
-    temp_list = []
+  def exportDF(self, useDF=False):
+    temp_list = np.asarray([])
     for counter in self._data:
-      temp_list.append([counter._true, counter._false])
-    new_df = pd.DataFrame(temp_list, columns=['true', 'false'])
-    return new_df
+      temp_list = np.insert(temp_list, 0, counter._true)
+    if useDF:
+      return pd.DataFrame(temp_list, columns=['true'])
+    else:
+      return temp_list
   
   def visualize(self):
     hist_bin = np.linspace(0, self._n, self._n)
     data_df = self.exportDF()
   
-  def prepare_animation(bar_container):
-    def animate(frame_number):
-      data
-  
-success_rate = 0.95
+  def exportXY(self):
+    temp_list = [0 for i in range(self._n + 1)]
+
+    for counter in self._data:
+      temp_list[counter._true] += 1
+    return temp_list
+
+
+# Define this Parameter
+success_rate = 0.6
 n_length = 50
-n_data = 10000
+n_data = 1000
 
 binoModel = binomation(success_rate, n_data, n_length)
 binoModel.generateData()
 binoModel.evaluateSuccessRate()
-binoModel.printData(True)
-temp_list = binoModel.exportDF()
+conv_list = binoModel.exportXY()
+arr_data = binoModel.exportDF(False)
+hist_bins = [x for x in range(n_length + 1)]
 
-HIST_BINS = np.linspace(0, n_length, n_length)
-n, _ = np.histogram(temp_list[['true']], bins=n_length)
-print(HIST_BINS)
+def init():
+  plt.hist(arr_data[:1], bins=hist_bins)
+  plt.text(0.1, 2.8, "Frame: 0")
 
-print(temp_list)
-fig, ax = plt.subplots()
+def updateData(frame):
+  if (frame >= 1):
+    plt.cla()
+    plt.hist(arr_data[:frame], density=True, bins=hist_bins, alpha=0.5)
+    ax = plt.gca()
+    ax.set_xlabel("Frame: " + str(frame))
 
-_, _, bar_container = ax.hist(temp_list['true'],range=[i for i in (0, n_length)], bins=n_length, density=True)
+fig = plt.figure()
+simulation = animation.FuncAnimation(fig, updateData, interval=2, frames=n_data, init_func=init, repeat=False)
+
 plt.show()
