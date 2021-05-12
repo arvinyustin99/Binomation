@@ -2,10 +2,17 @@
 
 Animating how the binomial distribution works
 
-Provided with a single data, containing N items, for which every item is either **true** or **false**. This single data is generated with uniformly and with _success rate_, where success rate determine how many items in N is **true**.
+## Binomial Distribution Introduction
 
-And then with M data, we try to visualise the distribution of single data containing some **true** items. More data is better, for generalizing the concept of binomial distributions.
+## How Binomation Works
+To simulate how Binomial Distribution works, we try from numerical approach instead of formal approach. We need to randomly pick a large set of data, **M**. After generating lot of data, we generate the true/false item based on **success_rate** and the data is dispersed uniformly to ensure randomness.
 
-For the sake of understanding, this projects will include some animation for depicting the distributions of data when ```M = 1```, until some value
+After the data is ready, they are visualised into histogram with ```x-axis``` and ```y-axis``` corresponds to how many true is found in a single event, and how many events are found to be ```x-value``` respectively. The ```y-axis``` could also be interpreted as
+```
+How much the probability for X = x to be happened?
+```
 
-If this projects succeeded, we will try to restructure the code into class-oriented programming.
+## Parameters in Binomation Model
+
+
+## Incoming Project
