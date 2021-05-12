@@ -13,6 +13,11 @@ How much the probability for X = x to be happened?
 ```
 
 ## Parameters in Binomation Model
+```
+success_rate  = the rate for the event to be successive, OR event to be successive from n_data
+n_data        = total event to be observed
+n_length      = total of sampling events to be picked
+```
 
 
 ## Incoming Project
