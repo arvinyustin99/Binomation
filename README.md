@@ -19,5 +19,10 @@ n_data        = total event to be observed
 n_length      = total of sampling events to be picked
 ```
 
+## Library Dependencies
+
+1. Numpy
+2. Matplotlib
+3. Pandas
 
 ## Incoming Project
